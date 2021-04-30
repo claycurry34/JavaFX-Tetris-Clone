@@ -196,9 +196,6 @@ public class GuiController implements Initializable {
                 else if (isPause.getValue() == Boolean.TRUE && keyEvent.getCode() == KeyCode.TAB)
                 {
                     printMistakes();
-                    mistakesArray.clear();
-                    totalControlInvocations = 0;
-                    mistakesArray.add("Gameplay restarted at " + dateFormat.format(new Date()));
                 }
                 else
                 {}
@@ -259,24 +256,15 @@ public class GuiController implements Initializable {
                 break;
             case 3:
                 ROTATE_COUNTER_CONTROL = c;
-                System.out.print("Indicate new keybinding for ROTATE_CLOCKWISE_CONTROL : ");
-                break;
-            case 4:
-                ROTATE_CLOCKWISE_CONTROL = c;
                 System.out.print("Indicate new keybinding for DOWN_CONTROL : ");
                 break;
-            case 5:
+            case 4:
                 DOWN_CONTROL = c;
-                System.out.print("Indicate new keybinding for STORE_CONTROL : ");
-                break;
-            case 6:
-                STORE_CONTROL = c;
+                System.out.println("New keybindings have been set. You may resume playing");
+                System.out.println("======================================================================");
                 instruction = -1;
                 reassign_controls_flag = false;
                 updateFooter();
-                System.out.println("New keybindings have been set. You may resume playing");
-                System.out.println("======================================================================");
-
                 break;
         }
         instruction += 1;
@@ -291,6 +279,10 @@ public class GuiController implements Initializable {
             System.out.println(mistakesArray.get(i));
         System.out.println("The UI recorded " + (i-1) + " invalid control invocations.");
         System.out.println("The UI recorded " + totalControlInvocations + " total control invocations.");
+        System.out.println("Resetting control counters");
+        mistakesArray.clear();
+        totalControlInvocations = 0;
+        mistakesArray.add("Gameplay restarted at " + dateFormat.format(new Date()));
         System.out.println("======================================================================");
     }
 
