@@ -30,8 +30,9 @@ public class GameController implements InputEventListener {
     @Override
     public DownData onDownEvent(MoveEvent event) {
         if (DEBUG) System.out.println("GameController.onDownEvent()");
-
+        int y = 0;
         boolean canMove = board.moveBrickDown();
+
         ClearRow clearRow = null;
         if (!canMove) {
             board.mergeBrickToBackground();
@@ -49,6 +50,9 @@ public class GameController implements InputEventListener {
             if (event.getEventSource() == EventSource.USER) {
                 board.getScore().add(1);
             }
+
+
+
         }
 
         if (DEBUG) System.out.println("GameController.onDownEvent()2");
@@ -79,7 +83,7 @@ public class GameController implements InputEventListener {
     public ViewData onRotateEvent(MoveEvent event) {
         if (DEBUG) System.out.println("GameController.onRotateEvent()");
 
-        board.rotateLeftBrick();
+        board.rotateRightBrick();
         if (DEBUG) System.out.println("GameController.onRotateEvent()2");
         return board.getViewData();
     }
