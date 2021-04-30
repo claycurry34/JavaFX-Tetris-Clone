@@ -16,6 +16,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.effect.Bloom;
 import javafx.scene.effect.Glow;
@@ -116,6 +117,17 @@ public class GuiController implements Initializable {
 
     @FXML
     private GridPane nextBrick3;
+
+    @FXML
+    private Text       moveLeft = new Text("Left arrow Key moves left");
+
+    @FXML
+    private Text       moveRight = new Text("Right arrow key moves right");
+
+    @FXML
+    private Text       rotateBrick = new Text("The up arrow rotates the brick");
+    @FXML
+    private Text       slowDrop = new Text("The down arrow drops the brick");
 
     private Board board;
 	
@@ -425,6 +437,7 @@ public class GuiController implements Initializable {
 
         scoreValue.textProperty().bind(integerProperty.asString());
     }
+
 
     // ======================================================================
     // Handles Brick Coloring
