@@ -37,7 +37,8 @@
         </VBox>
 
         <VBox alignment="CENTER" spacing="0.0">
-        <!-- Layout for Store Brick -->
+            <!--Layout for Store Brick -->
+            <!--
             <VBox alignment="CENTER_LEFT">
                 <Label text="Store" styleClass="nextBrickLabel"/>
                 <BorderPane styleClass="nextBrick" prefWidth="75" prefHeight="75" maxWidth="75">
@@ -46,6 +47,7 @@
                     </center>
                 </BorderPane>
             </VBox>
+            -->
 
             <!-- Layout for Next Bricks -->
             <VBox alignment="CENTER_LEFT">
@@ -67,8 +69,17 @@
         <VBox alignment="CENTER_LEFT" spacing="5.0">
             <Button text="New Game" onAction="#newGame" styleClass="ipad-dark-grey" prefWidth="110"/>
             <ToggleButton text="Pause" styleClass="ipad-dark-grey" onAction="#pauseGame" prefWidth="110"
-                      fx:id="pauseButton"/>
+                          fx:id="pauseButton"/>
         </VBox>
+
+        <VBox alignment="CENTER" spacing="3.5" translateX="-195.0" translateY="2.0">
+            <Text text = "Right Arrow Key: Moves right" fx:id="moveLeft" styleClass="helpInfo" />
+            <Text text = "Left Arrow Key: Moves left" fx:id="moveRight" styleClass="helpInfo" />
+            <Text text = "Up Arrow Key: Rotates" fx:id="rotateBrick" styleClass="helpInfo" />
+            <Text text = "Down Arrow Key: Drops" fx:id="slowDrop" styleClass="helpInfo" />
+
+        </VBox>
+
     </VBox>
     <Group fx:id="groupNotification" layoutX="14" layoutY="203">
         <VBox alignment="CENTER">

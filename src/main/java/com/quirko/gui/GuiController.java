@@ -52,7 +52,7 @@ public class GuiController implements Initializable {
     private KeyCode DOWN_CONTROL = KeyCode.DOWN;
     private KeyCode DROP_CONTROL;
     private KeyCode STORE_CONTROL;
-    private boolean assign_flag = false;
+    private boolean reassign_controls_flag = false;
     private int instruction = 0;
     private ArrayList<String> mistakesArray; // COUNTS THE NUMBER OF INVALID CONTOL INVOCATIONS
     // WARNING:
@@ -149,34 +149,25 @@ public class GuiController implements Initializable {
                 if (isPause.getValue() == Boolean.FALSE && isGameOver.getValue() == Boolean.FALSE) {
                     if (keyEvent.getCode() == LEFT_HORIZONTAL_CONTROL) {
                         refreshBrick(eventListener.onLeftEvent(new MoveEvent(EventType.LEFT, EventSource.USER)));
-                        keyEvent.consume();
                     }
                     else if (keyEvent.getCode() == RIGHT_HORIZONTAL_CONTROL) {
                         refreshBrick(eventListener.onRightEvent(new MoveEvent(EventType.RIGHT, EventSource.USER)));
-                        keyEvent.consume();
                     }
                     else if (keyEvent.getCode() == ROTATE_COUNTER_CONTROL || keyEvent.getCode() == ROTATE_CLOCKWISE_CONTROL) {
                         refreshBrick(eventListener.onRotateEvent(new MoveEvent(EventType.ROTATE, EventSource.USER)));
-                        keyEvent.consume();
                     }
                     else if (keyEvent.getCode() == DOWN_CONTROL) {
 
-                           // while (board.moveBrickDown() == true) {
-                                moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
                         moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
                         moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
                         moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
                         moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
-                        
-                            //}
-
-                            keyEvent.consume();
-
+                        moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
                     }
                     else
                     {
                         mistakesArray.add(keyEvent.getCode().toString() + ", " + dateFormat.format(new Date())); // counts mistake and records time
-                        }
+                    }
                     totalControlInvocations += 1;
                 }
                 else if (keyEvent.getCode() == KeyCode.N) {
@@ -185,7 +176,7 @@ public class GuiController implements Initializable {
                 else if (keyEvent.getCode() == KeyCode.P) {
                     pauseButton.selectedProperty().setValue(!pauseButton.selectedProperty().getValue());
                 }
-                else if (assign_flag == true || (isPause.getValue() == Boolean.TRUE && keyEvent.getCode() == KeyCode.BACK_QUOTE))
+                else if (reassign_controls_flag == true || (isPause.getValue() == Boolean.TRUE && keyEvent.getCode() == KeyCode.BACK_QUOTE))
                 {
                     reassignControls(keyEvent.getCode());
                 }
@@ -197,8 +188,7 @@ public class GuiController implements Initializable {
                     mistakesArray.add("Gameplay restarted at " + dateFormat.format(new Date()));
                 }
                 else
-                System.out.println("I'm not sure what just happened");
-
+                {}
 
                 keyEvent.consume();
             }
@@ -232,10 +222,10 @@ public class GuiController implements Initializable {
 
     private void reassignControls(KeyCode c)
     {
-        if (assign_flag == false) {
+        if (reassign_controls_flag == false) {
             System.out.println("\n\n======================================================================");
             System.out.println("Assigning new controls. Don't mess this up (press backspace if you mess up).");
-            assign_flag = true;
+            reassign_controls_flag = true;
             instruction = 0;
         }
         if (c == KeyCode.BACK_SPACE)
@@ -269,7 +259,7 @@ public class GuiController implements Initializable {
             case 6:
                 STORE_CONTROL = c;
                 instruction = -1;
-                assign_flag = false;
+                reassign_controls_flag = false;
                 System.out.println("New keybindings have been set. You may resume playing");
                 System.out.println("======================================================================");
 
@@ -289,6 +279,8 @@ public class GuiController implements Initializable {
         System.out.println("The UI recorded " + totalControlInvocations + " total control invocations.");
         System.out.println("======================================================================");
     }
+
+    
 
     public void initGameView(int[][] boardMatrix, ViewData brick) {
         if (DEBUG) System.out.println("GuiController.initGameView()");
