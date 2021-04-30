@@ -29,7 +29,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.ArrayList;
@@ -55,6 +54,20 @@ public class GuiController implements Initializable {
     private boolean reassign_controls_flag = false;
     private int instruction = 0;
     private ArrayList<String> mistakesArray; // COUNTS THE NUMBER OF INVALID CONTOL INVOCATIONS
+
+    // Footer Description
+    @FXML
+    private Text moveLeft;
+
+    @FXML
+    private Text moveRight;
+
+    @FXML
+    private Text rotateBrick;
+
+    @FXML
+    private Text slowDrop;
+
     // WARNING:
     // KeyCode.N should be reserved for New Game.
     // KeyCode.P should be reserved for Pause
@@ -131,8 +144,8 @@ public class GuiController implements Initializable {
         Font.loadFont(getClass().getClassLoader().getResource("digital.ttf").toExternalForm(), 38);
         gamePanel.setFocusTraversable(true);
         gamePanel.requestFocus();
+        updateFooter();
         mistakesArray = new ArrayList<String>();
-
 
 
         mistakesArray.add("Gameplay started at " + dateFormat.format(new Date()));
@@ -260,6 +273,7 @@ public class GuiController implements Initializable {
                 STORE_CONTROL = c;
                 instruction = -1;
                 reassign_controls_flag = false;
+                updateFooter();
                 System.out.println("New keybindings have been set. You may resume playing");
                 System.out.println("======================================================================");
 
@@ -280,7 +294,16 @@ public class GuiController implements Initializable {
         System.out.println("======================================================================");
     }
 
-    
+    private void updateFooter()
+    {
+        moveLeft.setText("" + LEFT_HORIZONTAL_CONTROL + " : Left Horizontal Movement");
+
+        moveRight.setText("" + RIGHT_HORIZONTAL_CONTROL + " : Right Horizontal Movement");
+
+        rotateBrick.setText("" + ROTATE_COUNTER_CONTROL + " : Rotate Counterclockwise");
+
+        slowDrop.setText("" + DOWN_CONTROL + " : Drop 5 Positions");
+    }
 
     public void initGameView(int[][] boardMatrix, ViewData brick) {
         if (DEBUG) System.out.println("GuiController.initGameView()");
