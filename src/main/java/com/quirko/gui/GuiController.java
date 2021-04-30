@@ -160,8 +160,18 @@ public class GuiController implements Initializable {
                         keyEvent.consume();
                     }
                     else if (keyEvent.getCode() == DOWN_CONTROL) {
+
+                           // while (board.moveBrickDown() == true) {
+                                moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
                         moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
-                        keyEvent.consume();
+                        moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
+                        moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
+                        moveDown(new MoveEvent(EventType.DOWN, EventSource.USER));
+                        
+                            //}
+
+                            keyEvent.consume();
+
                     }
                     else
                     {
@@ -444,7 +454,7 @@ public class GuiController implements Initializable {
                 returnPaint = Color.AQUA;
                 break;
             case 2:
-                returnPaint = Color.BLUE;
+                returnPaint = Color.BROWN;
                 break;
             case 3:
                 returnPaint = Color.DARKORANGE;

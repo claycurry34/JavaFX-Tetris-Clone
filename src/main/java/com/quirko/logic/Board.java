@@ -4,6 +4,7 @@ public interface Board {
 
     boolean moveBrickDown();
 
+
     boolean moveBrickLeft();
 
     boolean moveBrickRight();

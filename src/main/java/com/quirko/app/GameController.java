@@ -30,7 +30,6 @@ public class GameController implements InputEventListener {
     @Override
     public DownData onDownEvent(MoveEvent event) {
         if (DEBUG) System.out.println("GameController.onDownEvent()");
-        int y = 0;
         boolean canMove = board.moveBrickDown();
 
         ClearRow clearRow = null;
@@ -57,7 +56,13 @@ public class GameController implements InputEventListener {
 
         if (DEBUG) System.out.println("GameController.onDownEvent()2");
         return new DownData(clearRow, board.getViewData());
+
     }
+
+
+
+
+
 
     @Override
     public ViewData onLeftEvent(MoveEvent event) {
